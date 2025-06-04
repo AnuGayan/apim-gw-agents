@@ -32,6 +32,7 @@ import software.amazon.awssdk.http.SdkHttpClient;
 import software.amazon.awssdk.http.apache.ApacheHttpClient;
 import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.apigateway.ApiGatewayClient;
+import software.amazon.awssdk.services.apigateway.model.RestApi;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -128,5 +129,10 @@ public class AWSGatewayDeployer implements GatewayDeployer {
                 resource.setUriTemplate(resource.getUriTemplate().replace("/*", "/"));
             }
         }
+    }
+
+    public List<String> discoverAPIs() throws APIManagementException {
+        List<RestApi> restApis = AWSAPIUtil.getRestApis(apiGatewayClient);
+        return restApis.stream().map(RestApi::name).collect(Collectors.toList());
     }
 }

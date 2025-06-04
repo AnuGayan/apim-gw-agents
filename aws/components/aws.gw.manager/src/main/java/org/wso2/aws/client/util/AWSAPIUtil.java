@@ -44,6 +44,8 @@ import software.amazon.awssdk.services.apigateway.model.GetMethodResponse;
 import software.amazon.awssdk.services.apigateway.model.GetResourcesRequest;
 import software.amazon.awssdk.services.apigateway.model.GetResourcesResponse;
 import software.amazon.awssdk.services.apigateway.model.GetRestApiRequest;
+import software.amazon.awssdk.services.apigateway.model.GetRestApisRequest;
+import software.amazon.awssdk.services.apigateway.model.GetRestApisResponse;
 import software.amazon.awssdk.services.apigateway.model.ImportRestApiRequest;
 import software.amazon.awssdk.services.apigateway.model.ImportRestApiResponse;
 import software.amazon.awssdk.services.apigateway.model.IntegrationType;
@@ -56,6 +58,7 @@ import software.amazon.awssdk.services.apigateway.model.PutMode;
 import software.amazon.awssdk.services.apigateway.model.PutRestApiRequest;
 import software.amazon.awssdk.services.apigateway.model.PutRestApiResponse;
 import software.amazon.awssdk.services.apigateway.model.Resource;
+import software.amazon.awssdk.services.apigateway.model.RestApi;
 import software.amazon.awssdk.services.apigateway.model.UpdateMethodRequest;
 
 import java.util.ArrayList;
@@ -507,5 +510,17 @@ public class AWSAPIUtil {
             apiGatewayClient.deleteDeployment(deleteDeploymentRequest);
         }
         return true;
+    }
+
+    /**
+     * This method is used to get Rest APIs from AWS API Gateway.
+     *
+     * @param client APIGatewayClient object
+     * @return List of RestApi objects
+     */
+    public static List<RestApi> getRestApis(ApiGatewayClient client) {
+        GetRestApisRequest restApisRequest = GetRestApisRequest.builder().build();
+        GetRestApisResponse restApisResponse = client.getRestApis(restApisRequest);
+        return restApisResponse.items();
     }
 }
