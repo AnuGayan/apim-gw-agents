@@ -1,0 +1,50 @@
+{
+  "Azure": {
+    "apiTypes": ["HTTP", "SOAP"],
+    "gatewayFeatures": {
+      "basic": [
+        "transportsHTTP",
+        "transportsHTTPS",
+        "cors"
+      ],
+      "runtime": [
+        "oauth2",
+        "apiKey"
+      ],
+      "resources": [
+        "rewrite",
+        "retry",
+        "caching"
+      ],
+      "localScopes": [],
+      "policies": [
+        "policyTransformation",
+        "policyValidation",
+        "policyMonitoring"
+      ],
+      "monetization": [
+        "usagePlans"
+      ],
+      "subscriptions": [
+        "subscriptionManagement"
+      ],
+      "endpoints": [
+        "http",
+        "https"
+      ],
+      "endpointSecurity": [
+        "backendBasicAuth",
+        "backendCertAuth",
+        "backendOAuth"
+      ],
+      "tryout": [
+        "tryoutConsole"
+      ],
+      "specialized": [
+        "soapBackend",
+        "graphQL",
+        "webSockets"
+      ]
+    }
+  }
+}
